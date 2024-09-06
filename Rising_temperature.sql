@@ -1,5 +1,5 @@
 -- SOLUTION --
-
+-- ## Step 1: Understand the problem
 SELECT
     CURRENT_DAY.ID
 FROM
