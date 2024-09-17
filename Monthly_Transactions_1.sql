@@ -1,5 +1,27 @@
--- QUESTION --
+-- SOLUTION --
 
+SELECT
+    SUBSTR(TRANS_DATE, 1, 7) AS MONTH,
+    COUNTRY,
+    COUNT(ID) AS TRANS_COUNT,
+    SUM(
+        CASE
+            WHEN STATE = 'approved' THEN 1
+            ELSE 0 END) AS APPROVED_COUNT,
+    SUM(AMOUNT) AS TRANS_TOTAL_AMOUNT,
+    SUM(
+        CASE
+            WHEN STATE = 'approved' THEN
+                AMOUNT
+            ELSE 0
+        END) AS APPROVED_TOTAL_AMOUNT
+FROM
+    TRANSACTIONS
+GROUP BY
+    MONTH,
+    COUNTRY
+    
+-- QUESTION --
 
 Write an SQL query to find for each month and country, the number of transactions and their total amount, the number of approved transactions and their total amount.
 
