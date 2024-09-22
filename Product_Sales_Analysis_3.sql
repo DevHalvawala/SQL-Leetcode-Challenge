@@ -1,3 +1,24 @@
+-- SOLUTION--
+
+SELECT
+    PRODUCT_ID,
+    YEAR AS FIRST_YEAR,
+    QUANTITY,
+    PRICE
+FROM
+    SALES
+WHERE
+    (PRODUCT_ID, YEAR) IN (
+        SELECT
+            PRODUCT_ID,
+            MIN(YEAR)
+        FROM
+            SALES
+        GROUP BY
+            PRODUCT_ID
+    );
+
+
 -- QUESTION --
 
 Write a solution to select the product id, year, quantity, and price for the first year of every product sold.
