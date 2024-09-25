@@ -1,5 +1,20 @@
 -- SOLUTION --
 
+SELECT
+    MAX(NUM) AS NUM
+FROM
+    (
+        SELECT
+            NUM
+        FROM
+            MYNUMBERS
+        GROUP BY
+            NUM
+        HAVING
+            COUNT(NUM)=1
+    ) AS A
+
+    
 -- QUESTION --
 
 A single number is a number that appeared only once in the MyNumbers table.
