@@ -1,3 +1,28 @@
+-- SOLUTION --
+
+SELECT
+    P.PRODUCT_ID,
+    COALESCE((
+        SELECT
+            NEW_PRICE
+        FROM
+            PRODUCTS
+        WHERE
+            PRODUCT_ID = P.PRODUCT_ID
+            AND CHANGE_DATE <= '2019-08-16'
+        ORDER BY
+            CHANGE_DATE DESC LIMIT 1
+    ),
+    10) AS PRICE
+FROM
+    (
+        SELECT
+            DISTINCT PRODUCT_ID
+        FROM
+            PRODUCTS
+    ) P;
+
+    
 -- QUESTION --
 
 WRITE A SOLUTION TO FIND THE PRICES OF ALL PRODUCTS ON 2019-08-16. ASSUME THE PRICE OF ALL PRODUCTS BEFORE ANY CHANGE IS 10.
