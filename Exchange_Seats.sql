@@ -1,4 +1,26 @@
 -- SOLUTION --
+
+SELECT
+    CASE
+        WHEN ID % 2 = 1 AND ID < (
+            SELECT
+                MAX(ID)
+            FROM
+                SEAT
+        ) THEN
+            ID + 1
+        WHEN ID % 2 = 0 THEN
+            ID - 1
+        ELSE
+            ID
+    END AS ID,
+    STUDENT
+FROM
+    SEAT
+ORDER BY
+    ID;
+
+    
 -- QUESTION --
 
 WRITE A SOLUTION TO SWAP THE SEAT ID OF EVERY TWO CONSECUTIVE STUDENTS. IF THE NUMBER OF STUDENTS IS ODD, THE ID OF THE LAST STUDENT IS NOT SWAPPED.
