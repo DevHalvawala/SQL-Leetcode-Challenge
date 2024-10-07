@@ -1,5 +1,34 @@
 -- SOLUTION --
 
+(
+    SELECT
+        NAME AS RESULTS
+    FROM
+        MOVIERATING
+        INNER JOIN USERS
+        USING(USER_ID)
+    GROUP BY
+        USER_ID
+    ORDER BY
+        COUNT(MOVIE_ID) DESC,
+        NAME ASC LIMIT 1
+) UNION ALL (
+    SELECT
+        TITLE
+    FROM
+        MOVIERATING
+        INNER JOIN MOVIES
+        USING(MOVIE_ID)
+    WHERE
+        EXTRACT(YEAR_MONTH FROM CREATED_AT) = 202002
+    GROUP BY
+        MOVIE_ID
+    ORDER BY
+        AVG(RATING) DESC,
+        TITLE ASC LIMIT 1
+)
+
+
 -- QUESTION --
 
 WRITE A SOLUTION TO:
