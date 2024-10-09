@@ -1,4 +1,32 @@
 -- SOLUTION --
+
+SELECT
+    ID,
+    SUM(CNT) AS NUM
+FROM
+    ( (
+        SELECT
+            REQUESTER_ID AS ID,
+            COUNT(*) AS CNT
+        FROM
+            REQUESTACCEPTED
+        GROUP BY
+            REQUESTER_ID
+    ) UNION ALL (
+        SELECT
+            ACCEPTER_ID AS ID,
+            COUNT(*) AS CNT
+        FROM
+            REQUESTACCEPTED
+        GROUP BY
+            ACCEPTER_ID
+    ) ) T3
+GROUP BY
+    ID
+ORDER BY
+    NUM DESC LIMIT 1
+
+    
 -- QUESTION --
 
 WRITE A SOLUTION TO FIND THE PEOPLE WHO HAVE THE MOST FRIENDS AND THE MOST FRIENDS NUMBER.
