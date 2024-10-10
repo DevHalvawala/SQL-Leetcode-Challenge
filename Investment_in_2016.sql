@@ -1,6 +1,34 @@
 -- SOLUTION --
 
+SELECT
+    ROUND(SUM(TIV_2016), 2) AS TIV_2016
+FROM
+    INSURANCE
+WHERE
+    TIV_2015 IN (
+        SELECT
+            TIV_2015
+        FROM
+            INSURANCE
+        GROUP BY
+            TIV_2015
+        HAVING
+            COUNT(*)>1
+    )
+    AND(LAT, LON) IN (
+        SELECT
+            LAT,
+            LON
+        FROM
+            INSURANCE
+        GROUP BY
+            LAT,
+            LON
+        HAVING
+            COUNT(*)=1
+    )
 
+    
 -- QUESTION --
 
 Write a solution to report the sum of all total investment values in 2016 tiv_2016, for all policyholders who:
