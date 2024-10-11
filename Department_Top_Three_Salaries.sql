@@ -1,5 +1,26 @@
 -- SOLUTION --
+
+WITH RANKED_EMPLOYEES_BY_SALARY AS (
+    SELECT
+        *,
+        DENSE_RANK() OVER (PARTITION BY DEPARTMENTID ORDER BY SALARY DESC) AS SALARY_RANK
+    FROM
+        EMPLOYEE
+)
+SELECT
+    D.NAME   AS DEPARTMENT,
+    R.NAME   AS EMPLOYEE,
+    R.SALARY AS SALARY
+FROM
+    RANKED_EMPLOYEES_BY_SALARY R
+    INNER JOIN DEPARTMENT D
+    ON R.DEPARTMENTID = D.ID
+WHERE
+    SALARY_RANK <= 3
+
+
 -- QUESTION --
+
 A company's executives are interested in seeing who earns the most money in each of the company's departments. A high earner in a department is an employee who has a salary in the top three unique salaries for that department.
 
 Write a solution to find the employees who are high earners in each of the departments.
