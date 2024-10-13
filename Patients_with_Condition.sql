@@ -1,15 +1,24 @@
 -- SOLUTION --
+
+SELECT
+    PATIENT_ID,
+    PATIENT_NAME,
+    CONDITIONS
+FROM
+    PATIENTS
+WHERE
+    CONDITIONS LIKE 'DIAB1%'
+    OR CONDITIONS LIKE '% DIAB1%'
+
+    
 -- QUESTION --
 
-Write a solution to find the patient_id, patient_name, and conditions of the patients who have Type I Diabetes. Type I Diabetes always starts with DIAB1 prefix.
+WRITE A SOLUTION TO FIND THE PATIENT_ID, PATIENT_NAME, AND CONDITIONS OF THE PATIENTS WHO HAVE TYPE I DIABETES. TYPE I DIABETES ALWAYS STARTS WITH DIAB1 PREFIX.
+RETURN THE RESULT TABLE IN ANY ORDER.
+THE RESULT FORMAT IS IN THE FOLLOWING EXAMPLE.
+EXAMPLE 1:
 
-Return the result table in any order.
 
-The result format is in the following example.
-
- 
-
-Example 1:
 
 Input: 
 Patients table:
